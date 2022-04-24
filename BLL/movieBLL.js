@@ -9,4 +9,16 @@ module.exports = {
       });
     });
   },
+  getAllMoviesWithSubscriptions() {
+    return Movie.aggregate([
+      {
+        $lookup: {
+          from: "subscriptions",
+          localField: "_id",
+          foreignField: "movieId",
+          as: "subscriptions",
+        },
+      },
+    ]);
+  },
 };
