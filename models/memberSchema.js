@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
 
 module.exports = new mongoose.model(
-  "movies",
+  "members",
   mongoose.Schema({
     name: String,
-    yearPremiered: String,
-    genres: [String],
-    imageUrl: String,
+    email: String,
+    city: String,
   })
 );
