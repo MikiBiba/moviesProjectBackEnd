@@ -1,34 +1,10 @@
 const Movie = require("../models/movieSchema");
-const memberBLL = require("./memberBLL");
+
 
 module.exports = {
   getAllMovies() {
     return new Promise((res, rej) =>
       Movie.find({}, (err, data) => (err ? rej(err) : res(data)))
-    );
-  },
-  async getAllMoviesWithSub() {
-    return Promise.all(
-      (
-        await Movie.aggregate([
-          {
-            $lookup: {
-              from: "subscriptions",
-              localField: "_id",
-              foreignField: "movieId",
-              as: "subscriptions",
-            },
-          },
-        ])
-      ).map(async (movie) => ({
-        ...movie,
-        subscriptions: await Promise.all(
-          movie.subscriptions.map(async (subscription) => ({
-            ...subscription,
-            member: await memberBLL.getOneMember(subscription.memberId),
-          }))
-        ),
-      }))
     );
   },
   addNewMovie(obj) {

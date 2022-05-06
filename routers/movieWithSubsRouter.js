@@ -1,9 +1,9 @@
 const express = require("express");
-const movieBLL = require("../BLL/movieBLL");
+const moviesAndMembersBLL = require("../BLL/moviesAndMembers");
 const router = express.Router();
 
 router.route("/").get(async (req, res) => {
-  const data = await movieBLL.getAllMoviesWithSub();
+  const data = await moviesAndMembersBLL.getAllMoviesWithSub();
   return res.json(data);
 });
 
