@@ -18,6 +18,14 @@ module.exports = {
       });
     });
   },
+  updateMember(id, obj) {
+    return new Promise((resolve, reject) => {
+      Member.findByIdAndUpdate(id, obj, (error) => {
+        if (error) reject(error);
+        else resolve(`${Member.name} updated!`);
+      });
+    });
+  },
   addNewMember(obj) {
     return new Promise((resolve, reject) => {
       const newMember = new Member({

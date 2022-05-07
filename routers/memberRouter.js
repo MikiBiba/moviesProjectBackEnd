@@ -21,7 +21,8 @@ router.route("/:id").get(async (req, res) => {
 
 router.route("/:id").put(async (req, res) => {
   const { id } = req.params;
-  const result = await memberBLL.deleteMember(id);
+  const obj = req.body;
+  const result = await memberBLL.updateMember(id, obj);
   return res.json(result);
 });
 

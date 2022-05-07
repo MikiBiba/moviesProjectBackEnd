@@ -22,7 +22,7 @@ module.exports = {
         subscriptions: await Promise.all(
           member.subscriptions.map(async (subscription) => ({
             ...subscription,
-            movies: await movieBLL.getOneMovie(subscription.movieId),
+            movie: await movieBLL.getOneMovie(subscription.movieId),
           }))
         ),
       }))
