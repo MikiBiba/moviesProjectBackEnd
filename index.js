@@ -7,6 +7,7 @@ const movieWithSubsRouter = require("./routers/movieWithSubsRouter");
 const memberRouter = require("./routers/memberRouter");
 const memberWithSubRouter = require("./routers/memberWithSub");
 const userRouter = require("./routers/userRouter");
+const authRouter = require("./routers/authRouter")
 
 const app = express();
 const port = 8000;
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 app.use(cors({}));
 app.use("/users", userRouter);
 app.use("/movies", movieRouter);
+app.use("/auth", authRouter)
 app.use("/members", memberRouter);
 app.use("/users", userRouter);
 app.use("/moviesWithSubs", movieWithSubsRouter);
